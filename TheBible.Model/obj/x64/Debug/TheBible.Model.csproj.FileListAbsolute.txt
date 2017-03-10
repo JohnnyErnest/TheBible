@@ -1,0 +1,17 @@
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\bin\x64\Debug\TheBible.Model.dll
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\bin\x64\Debug\TheBible.Model.pdb
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\bin\x64\Debug\TheBible.Model.pri
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\TheBible.Model.csprojResolveAssemblyReference.cache
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\TheBible.Model.dll
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\TheBible.Model.pdb
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\priconfig.xml
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\priconfig.xml.intermediate
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\layout.resfiles
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\layout.resfiles.intermediate
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\resources.resfiles
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\resources.resfiles.intermediate
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\pri.resfiles
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\pri.resfiles.intermediate
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\qualifiers.txt
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\qualifiers.txt.intermediate
+c:\Users\John\documents\visual studio 2015\Projects\TheBible\TheBible.Model\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt

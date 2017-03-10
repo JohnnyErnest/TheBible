@@ -1,0 +1,2 @@
+c:\users\john\documents\visual studio 2015\Projects\TheBible\TheBible.Model\TheBible.Model.csproj;x64
+c:\users\john\documents\visual studio 2015\Projects\TheBible\TheBible\TheBible.csproj;x64
