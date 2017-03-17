@@ -7,7 +7,7 @@
     <ProjectGuid>{BC3F9D5E-BDE8-4D75-930A-3417DC7E0BBD}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VoiceCommandService</RootNamespace>
+    <RootNamespace>TheBible.VoiceCommands</RootNamespace>
     <AssemblyName>VoiceCommandService</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -110,6 +110,12 @@
   <ItemGroup>
     <Compile Include="TheBibleVoiceCommandService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheBible.Model\TheBible.Model.csproj">
+      <Project>{10dcc185-a44e-4e17-9a70-316c425c3e84}</Project>
+      <Name>TheBible.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

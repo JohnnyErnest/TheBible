@@ -13,7 +13,29 @@ namespace TheBible.Model.DataLoader
     public class DataLoader
     {
         public ObservableCollection<Translation> Translations { get; set; }
+        public ObservableCollection<BookVoiceName> BookVoiceNames { get; set; }
         public event EventHandler Completed;
+
+        async private Task LoadBookVoiceNames()
+        {
+            BookVoiceNames = new ObservableCollection<BookVoiceName>();
+
+            // Load the Translation File
+            Translation FileTranslation = new Translation();
+            StorageFile FileStorage = await Package.Current.InstalledLocation.GetFileAsync(@"Assets\BibleVoiceNames.xml");
+
+            Windows.Data.Xml.Dom.XmlDocument doc = await XmlDocument.LoadFromFileAsync(FileStorage);
+            var rootNode = doc.DocumentElement.SelectSingleNode("/VoiceNames");
+            var childNodes = rootNode.SelectNodes("Item");
+            foreach(var child in childNodes)
+            {
+                string voiceName = child.Attributes.GetNamedItem("voiceName").InnerText;
+                string actualName = child.Attributes.GetNamedItem("actualName").InnerText;
+                int totalChapters = Int32.Parse(child.Attributes.GetNamedItem("totalChapters").InnerText);
+
+                BookVoiceNames.Add(new BookVoiceName() { ActualBookName = actualName, VoiceBookName = voiceName, TotalChapters = totalChapters });
+            }
+        }
 
         async private Task<Translation> LoadXMLFile(string fileName)
         {
@@ -85,6 +107,8 @@ namespace TheBible.Model.DataLoader
 
         async public void LoadXMLDocuments()
         {
+            await LoadBookVoiceNames();
+
             Translations = new ObservableCollection<Translation>();
 
             Translations.Add(await LoadXMLFile(@"Assets\KJV.xml"));

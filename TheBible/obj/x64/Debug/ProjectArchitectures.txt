@@ -1,2 +1,4 @@
-c:\users\john\documents\visual studio 2015\Projects\TheBible\TheBible.Model\TheBible.Model.csproj;x64
-c:\users\john\documents\visual studio 2015\Projects\TheBible\TheBible\TheBible.csproj;x64
+C:\Users\John\Documents\Git\TheBible\TheBible.Model\TheBible.Model.csproj;x64
+C:\Users\John\Documents\Git\TheBible\TheBible.Model\TheBible.Model.csproj;x64
+C:\Users\John\Documents\Git\TheBible\TheBible\TheBible.csproj;x64
+C:\Users\John\Documents\Git\TheBible\VoiceCommandService\TheBible.VoiceCommandService.csproj;x64

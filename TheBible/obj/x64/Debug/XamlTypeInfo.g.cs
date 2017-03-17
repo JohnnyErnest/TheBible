@@ -132,21 +132,35 @@ namespace TheBible.TheBible_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
+            _typeNameTable = new string[13];
             _typeNameTable[0] = "TheBible.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[3] = "System.Collections.Generic.IEnumerable`1<TheBible.ViewModel.ChapterIndex>";
-            _typeNameTable[4] = "System.Collections.Generic.IEnumerable`1<TheBible.ViewModel.BookNames>";
-            _typeNameTable[5] = "Boolean";
+            _typeNameTable[4] = "System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.BookNames>";
+            _typeNameTable[5] = "System.Collections.ObjectModel.Collection`1<TheBible.ViewModel.BookNames>";
+            _typeNameTable[6] = "Object";
+            _typeNameTable[7] = "TheBible.ViewModel.BookNames";
+            _typeNameTable[8] = "String";
+            _typeNameTable[9] = "System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.TranslationsSources>";
+            _typeNameTable[10] = "System.Collections.ObjectModel.Collection`1<TheBible.ViewModel.TranslationsSources>";
+            _typeNameTable[11] = "TheBible.ViewModel.TranslationsSources";
+            _typeNameTable[12] = "Boolean";
 
-            _typeTable = new global::System.Type[6];
+            _typeTable = new global::System.Type[13];
             _typeTable[0] = typeof(global::TheBible.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[3] = typeof(global::System.Collections.Generic.IEnumerable<global::TheBible.ViewModel.ChapterIndex>);
-            _typeTable[4] = typeof(global::System.Collections.Generic.IEnumerable<global::TheBible.ViewModel.BookNames>);
-            _typeTable[5] = typeof(global::System.Boolean);
+            _typeTable[4] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::TheBible.ViewModel.BookNames>);
+            _typeTable[5] = typeof(global::System.Collections.ObjectModel.Collection<global::TheBible.ViewModel.BookNames>);
+            _typeTable[6] = typeof(global::System.Object);
+            _typeTable[7] = typeof(global::TheBible.ViewModel.BookNames);
+            _typeTable[8] = typeof(global::System.String);
+            _typeTable[9] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::TheBible.ViewModel.TranslationsSources>);
+            _typeTable[10] = typeof(global::System.Collections.ObjectModel.Collection<global::TheBible.ViewModel.TranslationsSources>);
+            _typeTable[11] = typeof(global::TheBible.ViewModel.TranslationsSources);
+            _typeTable[12] = typeof(global::System.Boolean);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -182,6 +196,36 @@ namespace TheBible.TheBible_XamlTypeInfo
         }
 
         private object Activate_0_MainPage() { return new global::TheBible.MainPage(); }
+        private object Activate_4_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::TheBible.ViewModel.BookNames>(); }
+        private object Activate_5_Collection() { return new global::System.Collections.ObjectModel.Collection<global::TheBible.ViewModel.BookNames>(); }
+        private object Activate_7_BookNames() { return new global::TheBible.ViewModel.BookNames(); }
+        private object Activate_9_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::TheBible.ViewModel.TranslationsSources>(); }
+        private object Activate_10_Collection() { return new global::System.Collections.ObjectModel.Collection<global::TheBible.ViewModel.TranslationsSources>(); }
+        private object Activate_11_TranslationsSources() { return new global::TheBible.ViewModel.TranslationsSources(); }
+        private void VectorAdd_4_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::TheBible.ViewModel.BookNames>)instance;
+            var newItem = (global::TheBible.ViewModel.BookNames)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_5_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::TheBible.ViewModel.BookNames>)instance;
+            var newItem = (global::TheBible.ViewModel.BookNames)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_9_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::TheBible.ViewModel.TranslationsSources>)instance;
+            var newItem = (global::TheBible.ViewModel.TranslationsSources)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_10_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::TheBible.ViewModel.TranslationsSources>)instance;
+            var newItem = (global::TheBible.ViewModel.TranslationsSources)item;
+            collection.Add(newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -199,7 +243,10 @@ namespace TheBible.TheBible_XamlTypeInfo
                 userType.AddMemberName("CurrentChapters");
                 userType.AddMemberName("Genesis");
                 userType.AddMemberName("CurrentBooks");
+                userType.AddMemberName("BooksInFirstTranslation");
+                userType.AddMemberName("CurrentTranslations");
                 userType.AddMemberName("UpdateChapterText");
+                userType.AddMemberName("DataLoaded");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -218,13 +265,59 @@ namespace TheBible.TheBible_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 4:   //  System.Collections.Generic.IEnumerable`1<TheBible.ViewModel.BookNames>
-                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+            case 4:   //  System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.BookNames>
+                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<TheBible.ViewModel.BookNames>"));
+                userType.CollectionAdd = VectorAdd_4_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 5:   //  Boolean
+            case 5:   //  System.Collections.ObjectModel.Collection`1<TheBible.ViewModel.BookNames>
+                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_5_Collection;
+                userType.CollectionAdd = VectorAdd_5_Collection;
+                xamlType = userType;
+                break;
+
+            case 6:   //  Object
+                xamlType = new global::TheBible.TheBible_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  TheBible.ViewModel.BookNames
+                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_7_BookNames;
+                userType.AddMemberName("BookName");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  String
+                xamlType = new global::TheBible.TheBible_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 9:   //  System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.TranslationsSources>
+                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<TheBible.ViewModel.TranslationsSources>"));
+                userType.CollectionAdd = VectorAdd_9_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 10:   //  System.Collections.ObjectModel.Collection`1<TheBible.ViewModel.TranslationsSources>
+                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_10_Collection;
+                userType.CollectionAdd = VectorAdd_10_Collection;
+                xamlType = userType;
+                break;
+
+            case 11:   //  TheBible.ViewModel.TranslationsSources
+                userType = new global::TheBible.TheBible_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_11_TranslationsSources;
+                userType.AddMemberName("TranslationShortName");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 12:   //  Boolean
                 xamlType = new global::TheBible.TheBible_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -247,15 +340,55 @@ namespace TheBible.TheBible_XamlTypeInfo
             var that = (global::TheBible.MainPage)instance;
             return that.CurrentBooks;
         }
-        private object get_3_MainPage_UpdateChapterText(object instance)
+        private object get_3_BookNames_BookName(object instance)
+        {
+            var that = (global::TheBible.ViewModel.BookNames)instance;
+            return that.BookName;
+        }
+        private void set_3_BookNames_BookName(object instance, object Value)
+        {
+            var that = (global::TheBible.ViewModel.BookNames)instance;
+            that.BookName = (global::System.String)Value;
+        }
+        private object get_4_MainPage_BooksInFirstTranslation(object instance)
+        {
+            var that = (global::TheBible.MainPage)instance;
+            return that.BooksInFirstTranslation;
+        }
+        private object get_5_MainPage_CurrentTranslations(object instance)
+        {
+            var that = (global::TheBible.MainPage)instance;
+            return that.CurrentTranslations;
+        }
+        private object get_6_TranslationsSources_TranslationShortName(object instance)
+        {
+            var that = (global::TheBible.ViewModel.TranslationsSources)instance;
+            return that.TranslationShortName;
+        }
+        private void set_6_TranslationsSources_TranslationShortName(object instance, object Value)
+        {
+            var that = (global::TheBible.ViewModel.TranslationsSources)instance;
+            that.TranslationShortName = (global::System.String)Value;
+        }
+        private object get_7_MainPage_UpdateChapterText(object instance)
         {
             var that = (global::TheBible.MainPage)instance;
             return that.UpdateChapterText;
         }
-        private void set_3_MainPage_UpdateChapterText(object instance, object Value)
+        private void set_7_MainPage_UpdateChapterText(object instance, object Value)
         {
             var that = (global::TheBible.MainPage)instance;
             that.UpdateChapterText = (global::System.Boolean)Value;
+        }
+        private object get_8_MainPage_DataLoaded(object instance)
+        {
+            var that = (global::TheBible.MainPage)instance;
+            return that.DataLoaded;
+        }
+        private void set_8_MainPage_DataLoaded(object instance, object Value)
+        {
+            var that = (global::TheBible.MainPage)instance;
+            that.DataLoaded = (global::System.Boolean)Value;
         }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
@@ -279,15 +412,45 @@ namespace TheBible.TheBible_XamlTypeInfo
                 break;
             case "TheBible.MainPage.CurrentBooks":
                 userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.MainPage");
-                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "CurrentBooks", "System.Collections.Generic.IEnumerable`1<TheBible.ViewModel.BookNames>");
+                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "CurrentBooks", "System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.BookNames>");
                 xamlMember.Getter = get_2_MainPage_CurrentBooks;
                 xamlMember.SetIsReadOnly();
+                break;
+            case "TheBible.ViewModel.BookNames.BookName":
+                userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.ViewModel.BookNames");
+                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "BookName", "String");
+                xamlMember.Getter = get_3_BookNames_BookName;
+                xamlMember.Setter = set_3_BookNames_BookName;
+                break;
+            case "TheBible.MainPage.BooksInFirstTranslation":
+                userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.MainPage");
+                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "BooksInFirstTranslation", "System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.BookNames>");
+                xamlMember.Getter = get_4_MainPage_BooksInFirstTranslation;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "TheBible.MainPage.CurrentTranslations":
+                userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.MainPage");
+                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "CurrentTranslations", "System.Collections.ObjectModel.ObservableCollection`1<TheBible.ViewModel.TranslationsSources>");
+                xamlMember.Getter = get_5_MainPage_CurrentTranslations;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "TheBible.ViewModel.TranslationsSources.TranslationShortName":
+                userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.ViewModel.TranslationsSources");
+                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "TranslationShortName", "String");
+                xamlMember.Getter = get_6_TranslationsSources_TranslationShortName;
+                xamlMember.Setter = set_6_TranslationsSources_TranslationShortName;
                 break;
             case "TheBible.MainPage.UpdateChapterText":
                 userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.MainPage");
                 xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "UpdateChapterText", "Boolean");
-                xamlMember.Getter = get_3_MainPage_UpdateChapterText;
-                xamlMember.Setter = set_3_MainPage_UpdateChapterText;
+                xamlMember.Getter = get_7_MainPage_UpdateChapterText;
+                xamlMember.Setter = set_7_MainPage_UpdateChapterText;
+                break;
+            case "TheBible.MainPage.DataLoaded":
+                userType = (global::TheBible.TheBible_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TheBible.MainPage");
+                xamlMember = new global::TheBible.TheBible_XamlTypeInfo.XamlMember(this, "DataLoaded", "Boolean");
+                xamlMember.Getter = get_8_MainPage_DataLoaded;
+                xamlMember.Setter = set_8_MainPage_DataLoaded;
                 break;
             }
             return xamlMember;

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceNames>
+  <Item voiceName="Genesis" actualName="Genesis" totalChapters="50"></Item>
+  <Item voiceName="Exodus" actualName="Exodus" totalChapters="40"></Item>
+  <Item voiceName="Leviticus" actualName="Leviticus" totalChapters="27"></Item>
+  <Item voiceName="Numbers" actualName="Numbers" totalChapters="36"></Item>
+  <Item voiceName="Deuteronomy" actualName="Deuteronomy" totalChapters="34"></Item>
+  <Item voiceName="Joshua" actualName="Joshua" totalChapters="24"></Item>
+  <Item voiceName="Judges" actualName="Judges" totalChapters="21"></Item>
+  <Item voiceName="Ruth" actualName="Ruth" totalChapters="4"></Item>
+  <Item voiceName="First Samuel" actualName="1 Samuel" totalChapters="31"></Item>
+  <Item voiceName="Second Samuel" actualName="2 Samuel" totalChapters="24"></Item>
+  <Item voiceName="First Kings" actualName="1 Kings" totalChapters="22"></Item>
+  <Item voiceName="Second Kings" actualName="2 Kings" totalChapters="25"></Item>
+  <Item voiceName="First Chronicles" actualName="1 Chronicles" totalChapters="29"></Item>
+  <Item voiceName="Second Chronicles" actualName="2 Chronicles" totalChapters="36"></Item>
+  <Item voiceName="Ezra" actualName="Ezra" totalChapters="10"></Item>
+  <Item voiceName="Nehemiah" actualName="Nehemiah" totalChapters="13"></Item>
+  <Item voiceName="Esther" actualName="Esther" totalChapters="10"></Item>
+  <Item voiceName="Job" actualName="Job" totalChapters="42"></Item>
+  <Item voiceName="Psalm" actualName="Psalm" totalChapters="150"></Item>
+  <Item voiceName="Proverbs" actualName="Proverbs" totalChapters="31"></Item>
+  <Item voiceName="Ecclesiastes" actualName="Ecclesiastes" totalChapters="12"></Item>
+  <Item voiceName="Song of Solomon" actualName="Song of Solomon" totalChapters="8"></Item>
+  <Item voiceName="Isaiah" actualName="Isaiah" totalChapters="66"></Item>
+  <Item voiceName="Jeremiah" actualName="Jeremiah" totalChapters="52"></Item>
+  <Item voiceName="Lamentations" actualName="Lamentations" totalChapters="5"></Item>
+  <Item voiceName="Ezekiel" actualName="Ezekiel" totalChapters="48"></Item>
+  <Item voiceName="Daniel" actualName="Daniel" totalChapters="12"></Item>
+  <Item voiceName="Hosea" actualName="Hosea" totalChapters="14"></Item>
+  <Item voiceName="Joel" actualName="Joel" totalChapters="3"></Item>
+  <Item voiceName="Amos" actualName="Amos" totalChapters="9"></Item>
+  <Item voiceName="Obadiah" actualName="Obadiah" totalChapters="1"></Item>
+  <Item voiceName="Jonah" actualName="Jonah" totalChapters="4"></Item>
+  <Item voiceName="Micah" actualName="Micah" totalChapters="7"></Item>
+  <Item voiceName="Nahum" actualName="Nahum" totalChapters="3"></Item>
+  <Item voiceName="Habakkuk" actualName="Habakkuk" totalChapters="3"></Item>
+  <Item voiceName="Zephaniah" actualName="Zephaniah" totalChapters="3"></Item>
+  <Item voiceName="Haggai" actualName="Haggai" totalChapters="2"></Item>
+  <Item voiceName="Zechariah" actualName="Zechariah" totalChapters="14"></Item>
+  <Item voiceName="Malachi" actualName="Malachi" totalChapters="4"></Item>
+  <Item voiceName="Matthew" actualName="Matthew" totalChapters="28"></Item>
+  <Item voiceName="Mark" actualName="Mark" totalChapters="16"></Item>
+  <Item voiceName="Luke" actualName="Luke" totalChapters="24"></Item>
+  <Item voiceName="John" actualName="John" totalChapters="21"></Item>
+  <Item voiceName="Acts" actualName="Acts" totalChapters="28"></Item>
+  <Item voiceName="Romans" actualName="Romans" totalChapters="16"></Item>
+  <Item voiceName="First Corinthians" actualName="1 Corinthians" totalChapters="16"></Item>
+  <Item voiceName="Second Corinthians" actualName="2 Corinthians" totalChapters="13"></Item>
+  <Item voiceName="Galatians" actualName="Galatians" totalChapters="6"></Item>
+  <Item voiceName="Ephesians" actualName="Ephesians" totalChapters="6"></Item>
+  <Item voiceName="Philippians" actualName="Philippians" totalChapters="4"></Item>
+  <Item voiceName="Colossians" actualName="Colossians" totalChapters="4"></Item>
+  <Item voiceName="First Thessalonians" actualName="1 Thessalonians" totalChapters="5"></Item>
+  <Item voiceName="Second Thessalonians" actualName="2 Thessalonians" totalChapters="3"></Item>
+  <Item voiceName="First Timothy" actualName="1 Timothy" totalChapters="6"></Item>
+  <Item voiceName="Second Timothy" actualName="2 Timothy" totalChapters="4"></Item>
+  <Item voiceName="Titus" actualName="Titus" totalChapters="3"></Item>
+  <Item voiceName="Philemon" actualName="Philemon" totalChapters="1"></Item>
+  <Item voiceName="Hebrews" actualName="Hebrews" totalChapters="13"></Item>
+  <Item voiceName="James" actualName="James" totalChapters="5"></Item>
+  <Item voiceName="First Peter" actualName="1 Peter" totalChapters="5"></Item>
+  <Item voiceName="Second Peter" actualName="2 Peter" totalChapters="3"></Item>
+  <Item voiceName="First John" actualName="1 John" totalChapters="5"></Item>
+  <Item voiceName="Second John" actualName="2 John" totalChapters="1"></Item>
+  <Item voiceName="Third John" actualName="3 John" totalChapters="1"></Item>
+  <Item voiceName="Jude" actualName="Jude" totalChapters="1"></Item>
+  <Item voiceName="Revelation" actualName="Revelation" totalChapters="22"></Item>
+</VoiceNames>

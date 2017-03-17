@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TheBible.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -90,11 +93,28 @@ namespace TheBible
             }
         }
 
-        public IEnumerable<BookNames> CurrentBooks
+        public ObservableCollection<BookNames> CurrentBooks
         {
             get
             {
-                return from b in dataLoader.Translations[TranslationIndex].Books select new BookNames { BookName = b.BookName };
+                return new ObservableCollection<BookNames>(from b in dataLoader.Translations[TranslationIndex].Books select new BookNames { BookName = b.BookName });
+            }
+        }
+
+        public ObservableCollection<BookNames> BooksInFirstTranslation
+        {
+            get
+            {
+                return new ObservableCollection<BookNames>(from b in dataLoader.Translations[0].Books select new BookNames { BookName = b.BookName });
+            }
+        }
+
+        public ObservableCollection<TranslationsSources> CurrentTranslations
+        {
+            get
+            {
+                //return from t in dataLoader.Translations select new TranslationsSources { TranslationShortName = t.TranslationShortName };
+                return new ObservableCollection<TranslationsSources>(from t in dataLoader.Translations select new TranslationsSources { TranslationShortName = t.TranslationShortName });
             }
         }
 
@@ -109,6 +129,11 @@ namespace TheBible
         public bool UpdateChapterText { get; set; }
 
         /// <summary>
+        /// This property lets you know when all of the data has been loaded by the app.
+        /// </summary>
+        public bool DataLoaded { get; set; }
+
+        /// <summary>
         /// The DataLoader object loads up the various Bible translation texts
         /// </summary>
         TheBible.Model.DataLoader.DataLoader dataLoader;
@@ -118,13 +143,38 @@ namespace TheBible
             this.InitializeComponent();
             dataLoader = new Model.DataLoader.DataLoader();
             dataLoader.Completed += DataLoader_Completed;
+            ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+        }
+
+        public async void SetBookChapter(string book, int? chapter)
+        {
+            while (!DataLoaded)
+            {
+                await Task.Delay(100);
+            }
+
+            Model.BookVoiceName voice = dataLoader.BookVoiceNames.FirstOrDefault(b => b.VoiceBookName.ToLower() == book.ToLower());
+            if (voice.TotalChapters >= chapter)
+            {
+                UpdateChapterText = false;
+                BookNames newBook2 = new BookNames() { BookName = voice.ActualBookName };
+                cmb_Book.SelectedItem = newBook2;
+                cmb_Chapter.ItemsSource = CurrentChapters;
+                UpdateChapterText = true;
+                if (!chapter.HasValue)
+                    chapter = 1;
+                if (cmb_Chapter.Items.Count < chapter.Value)
+                    chapter = cmb_Chapter.Items.Count;
+                cmb_Chapter.SelectedIndex = chapter.Value - 1;
+            }
         }
 
         private void DataLoader_Completed(object sender, EventArgs e)
         {
+            DataLoaded = true;
             UpdateChapterText = false;
-            cmb_Translation.ItemsSource = from t in dataLoader.Translations select new { t.TranslationShortName };
-            cmb_Book.ItemsSource = from b in dataLoader.Translations[0].Books select new { b.BookName };
+            cmb_Translation.ItemsSource = CurrentTranslations;
+            cmb_Book.ItemsSource = BooksInFirstTranslation;
             cmb_Chapter.ItemsSource = Genesis;
             cmb_Translation.SelectedIndex = 0;
             cmb_Book.SelectedIndex = 0;
@@ -216,6 +266,21 @@ namespace TheBible
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
             decrementChapter();
+        }
+
+        private void btn_FullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            var view = ApplicationView.GetForCurrentView();
+            if (view.IsFullScreenMode)
+            {
+                sym_FullScreen.Symbol = Symbol.FullScreen;
+                view.ExitFullScreenMode();
+            }
+            else
+            {
+                sym_FullScreen.Symbol = Symbol.BackToWindow;
+                view.TryEnterFullScreenMode();
+            }
         }
     }
 }

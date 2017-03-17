@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBible", "TheBible\TheBible.csproj", "{66F37F8D-C8B9-4755-9861-0A5CAB63FFC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBible.Model", "TheBible.Model\TheBible.Model.csproj", "{10DCC185-A44E-4E17-9A70-316C425C3E84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceCommandService", "VoiceCommandService\VoiceCommandService.csproj", "{BC3F9D5E-BDE8-4D75-930A-3417DC7E0BBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBible.VoiceCommandService", "VoiceCommandService\TheBible.VoiceCommandService.csproj", "{BC3F9D5E-BDE8-4D75-930A-3417DC7E0BBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

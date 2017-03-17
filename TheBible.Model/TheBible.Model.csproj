@@ -109,7 +109,9 @@
   <ItemGroup>
     <Compile Include="DataLoader\DataLoader.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\BookVoiceName.cs" />
     <Compile Include="Model\Chapter.cs" />
+    <Compile Include="Model\DataContext\EntityDataContext.cs" />
     <Compile Include="Model\Testament.cs" />
     <Compile Include="Model\Translation.cs" />
     <Compile Include="Model\Verse.cs" />

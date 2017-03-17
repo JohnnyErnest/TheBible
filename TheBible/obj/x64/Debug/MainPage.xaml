@@ -16,11 +16,18 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:ConnectionId='2' x:Name="btn_Back" Margin="0,0,20,0"                        FontFamily="Segoe UI Symbol" FontSize="12" Content="◀"></Button>
+            <Button x:ConnectionId='2' x:Name="btn_Back" Margin="0,0,20,0"                       >
+                <SymbolIcon Symbol="Back"></SymbolIcon>
+            </Button>
             <ComboBox x:ConnectionId='3' x:Name="cmb_Translation" DisplayMemberPath="TranslationShortName"                                                     />
             <ComboBox x:ConnectionId='4' x:Name="cmb_Book" DisplayMemberPath="BookName"                                              />
             <ComboBox x:ConnectionId='5' x:Name="cmb_Chapter" DisplayMemberPath="Index"                                                 />
-            <Button x:ConnectionId='6' x:Name="btn_Forward" Margin="20,0,0,0"                           FontFamily="Segoe UI Symbol" FontSize="12" Content="▶"></Button>
+            <Button x:ConnectionId='6' x:Name="btn_Forward" Margin="20,0,0,0"                          >
+                <SymbolIcon Symbol="Forward"></SymbolIcon>
+            </Button>
+            <Button x:ConnectionId='7' x:Name="btn_FullScreen" Margin="20,0,0,0"                             >
+                <SymbolIcon x:ConnectionId='8' x:Name="sym_FullScreen" Symbol="BackToWindow"></SymbolIcon>
+            </Button>
         </StackPanel>
         <ScrollViewer Grid.Row="1" Margin="20,20,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock x:ConnectionId='1' x:Name="textBlock_Verses" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontFamily="Constantia" FontSize="24" />

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="TheBibleCommandSet_en-us">
+    <AppName> Your Bible </AppName>
+    <Example> Please open Your Bible to James chapter 5 </Example>
+
+    <Command Name="openBible">
+      <Example> Please open Your Bible to James chapter 5 </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> [please] open [to] {book} [chapter] {chapter} [please] </ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified"> [please] open {builtin:AppName} [to] {book} [chapter] {chapter} [please] </ListenFor>
+      <Feedback> Opening into {book} chapter {chapter} </Feedback>
+      <Navigate/>
+      <!--<VoiceCommandService Target="TheBibleVoiceCommandService"/>-->
+    </Command>
+
+    <Command Name="thankYouBible">
+      <Example> Thank you for sharing Your Bible with me </Example>
+      <ListenFor RequireAppName="ExplicitlySpecified"> thank you for sharing {builtin:AppName} [with] [me] [us] </ListenFor>
+      <Feedback> You're very welcome! </Feedback>
+      <!--<Navigate/>-->
+      <VoiceCommandService Target="TheBibleVoiceCommandService"/>
+    </Command>
+
+    <PhraseList Label="book">
+      <Item>Genesis</Item>
+      <Item>Exodus</Item>
+      <Item>Leviticus</Item>
+      <Item>Numbers</Item>
+      <Item>Deuteronomy</Item>
+      <Item>Joshua</Item>
+      <Item>Judges</Item>
+      <Item>Ruth</Item>
+      <Item>First Samuel</Item>
+      <Item>Second Samuel</Item>
+      <Item>First Kings</Item>
+      <Item>Second Kings</Item>
+      <Item>First Chronicles</Item>
+      <Item>Second Chronicles</Item>
+      <Item>Ezra</Item>
+      <Item>Nehemiah</Item>
+      <Item>Esther</Item>
+      <Item>Job</Item>
+      <Item>Psalm</Item>
+      <Item>Proverbs</Item>
+      <Item>Ecclesiastes</Item>
+      <Item>Song of Solomon</Item>
+      <Item>Isaiah</Item>
+      <Item>Jeremiah</Item>
+      <Item>Lamentations</Item>
+      <Item>Ezekiel</Item>
+      <Item>Daniel</Item>
+      <Item>Hosea</Item>
+      <Item>Joel</Item>
+      <Item>Amos</Item>
+      <Item>Obadiah</Item>
+      <Item>Jonah</Item>
+      <Item>Micah</Item>
+      <Item>Nahum</Item>
+      <Item>Habakkuk</Item>
+      <Item>Zephaniah</Item>
+      <Item>Haggai</Item>
+      <Item>Zechariah</Item>
+      <Item>Malachi</Item>
+      <Item>Matthew</Item>
+      <Item>Mark</Item>
+      <Item>Luke</Item>
+      <Item>John</Item>
+      <Item>Acts</Item>
+      <Item>Romans</Item>
+      <Item>First Corinthians</Item>
+      <Item>Second Corinthians</Item>
+      <Item>Galatians</Item>
+      <Item>Ephesians</Item>
+      <Item>Philippians</Item>
+      <Item>Colossians</Item>
+      <Item>First Thessalonians</Item>
+      <Item>Second Thessalonians</Item>
+      <Item>First Timothy</Item>
+      <Item>Second Timothy</Item>
+      <Item>Titus</Item>
+      <Item>Philemon</Item>
+      <Item>Hebrews</Item>
+      <Item>James</Item>
+      <Item>First Peter</Item>
+      <Item>Second Peter</Item>
+      <Item>First John</Item>
+      <Item>Second John</Item>
+      <Item>Third John</Item>
+      <Item>Jude</Item>
+      <Item>Revelation</Item>
+    </PhraseList>
+    
+    <PhraseList Label="chapter">
+      <Item>Abort</Item>
+    </PhraseList>
+
+    <!--<PhraseTopic Scenario="chapter">
+      <Subject>Phone Number</Subject>>
+    </PhraseTopic>-->
+  </CommandSet>
+</VoiceCommands>
