@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using TheBible.Model.DataLoader;
 using TheBible.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,6 +21,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,6 +32,18 @@ namespace TheBible
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public bool IsMenuOpen
+        {
+            get
+            {
+                return this.splitPanel_MainMenu.IsPaneOpen;
+            }
+            set
+            {
+                this.splitPanel_MainMenu.IsPaneOpen = value;
+            }
+        }
+
         /// <summary>
         /// This is a helper property for setting the Translation SelectedIndex
         /// </summary>
@@ -33,7 +51,8 @@ namespace TheBible
         {
             get
             {
-                return cmb_Translation.SelectedIndex;
+                //return (int)(cmb_Translation.SelectedItem as SQLDataLoader.Translation).ID;
+                return cmb_Translation.SelectedIndex + 1;
             }
             set
             {
@@ -48,7 +67,7 @@ namespace TheBible
         {
             get
             {
-                return cmb_Book.SelectedIndex;
+                return cmb_Book.SelectedIndex + 1;
             }
             set
             {
@@ -63,7 +82,7 @@ namespace TheBible
         {
             get
             {
-                return cmb_Chapter.SelectedIndex;
+                return cmb_Chapter.SelectedIndex + 1;
             }
             set
             {
@@ -78,7 +97,10 @@ namespace TheBible
         {
             get
             {
-                return from c in dataLoader.Translations[TranslationIndex].Books[BookIndex].Chapters select new ChapterIndex { Index = c.Index };
+                var translations = sqlLiteDB.GetAllTranslations().Where(b => b.TranslationIndex == TranslationIndex).First();
+                var books = sqlLiteDB.GetAllBooks(translations.TranslationShortName).Where(b => b.BookIndex == BookIndex).First();
+                var chapterNumbers = sqlLiteDB.GetChapterNumbers(books.BookID);
+                return from c in chapterNumbers select new ChapterIndex { Index = c };
             }
         }
 
@@ -89,7 +111,10 @@ namespace TheBible
         {
             get
             {
-                return from c in dataLoader.Translations[0].Books[0].Chapters select new ChapterIndex { Index = c.Index };
+                var translations = sqlLiteDB.GetAllTranslations().Where(b => b.TranslationShortName == "KJV").First();
+                var books = sqlLiteDB.GetAllBooks(translations.TranslationShortName).Where(b => b.BookShortName == "Gen").First();
+                var chapterNumbers = sqlLiteDB.GetChapterNumbers(books.BookID);
+                return from c in chapterNumbers select new ChapterIndex { Index = c };
             }
         }
 
@@ -97,7 +122,10 @@ namespace TheBible
         {
             get
             {
-                return new ObservableCollection<BookNames>(from b in dataLoader.Translations[TranslationIndex].Books select new BookNames { BookName = b.BookName });
+                var translations = sqlLiteDB.GetAllTranslations().Where(b => b.TranslationIndex == TranslationIndex).First();
+                var books = sqlLiteDB.GetAllBooks(translations.TranslationShortName);
+                var query = from b in books select new BookNames { BookName = b.BookName };
+                return new ObservableCollection<BookNames>(query);
             }
         }
 
@@ -105,7 +133,10 @@ namespace TheBible
         {
             get
             {
-                return new ObservableCollection<BookNames>(from b in dataLoader.Translations[0].Books select new BookNames { BookName = b.BookName });
+                var translations = sqlLiteDB.GetAllTranslations().Where(b => b.TranslationShortName == "KJV").First();
+                var books = sqlLiteDB.GetAllBooks(translations.TranslationShortName);
+                var query = from b in books select new BookNames { BookName = b.BookName };
+                return new ObservableCollection<BookNames>(query);
             }
         }
 
@@ -113,8 +144,7 @@ namespace TheBible
         {
             get
             {
-                //return from t in dataLoader.Translations select new TranslationsSources { TranslationShortName = t.TranslationShortName };
-                return new ObservableCollection<TranslationsSources>(from t in dataLoader.Translations select new TranslationsSources { TranslationShortName = t.TranslationShortName });
+                return new ObservableCollection<TranslationsSources>(from t in sqlLiteDB.GetAllTranslations() select new TranslationsSources { TranslationShortName = t.TranslationShortName });
             }
         }
 
@@ -134,15 +164,54 @@ namespace TheBible
         public bool DataLoaded { get; set; }
 
         /// <summary>
+        /// This property holds the Database context for the local SQLite DB that holds the Bible text
+        /// </summary>
+        public SQLiteData sqlLiteDB { get; set; }
+
+        /// <summary>
+        /// This property loads up the book names for voice commands with Cortana
+        /// </summary>
+        public VoiceCommandDataLoader voiceCommandDataLoader { get; set; }
+
+        /// <summary>
         /// The DataLoader object loads up the various Bible translation texts
         /// </summary>
-        TheBible.Model.DataLoader.DataLoader dataLoader;
+        //TheBible.Model.DataLoader.DataLoader dataLoader;
+
+        async void LoadSQLDatabase()
+        {
+            using (var db = new SQLitePrefs())
+            {
+            }
+        }
+
+        async void SetupLocalSQLiteConnections()
+        {
+            try
+            {
+                sqlLiteDB = new SQLiteData();
+                await sqlLiteDB.SetupConnection();
+                this.InterfaceInitialization();
+            }
+            catch (Exception ex)
+            {
+                MessageDialog dialog = new MessageDialog(ex.ToString());
+                await dialog.ShowAsync();
+            }
+        }
+
+        async void LoadVoice()
+        {
+            this.voiceCommandDataLoader = new VoiceCommandDataLoader();
+            await this.voiceCommandDataLoader.LoadBookVoiceNames();
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
-            dataLoader = new Model.DataLoader.DataLoader();
-            dataLoader.Completed += DataLoader_Completed;
+            this.LoadVoice();
+            this.SetupLocalSQLiteConnections();
+
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
         }
 
@@ -153,7 +222,7 @@ namespace TheBible
                 await Task.Delay(100);
             }
 
-            Model.BookVoiceName voice = dataLoader.BookVoiceNames.FirstOrDefault(b => b.VoiceBookName.ToLower() == book.ToLower());
+            Model.BookVoiceName voice = this.voiceCommandDataLoader.BookVoiceNames.FirstOrDefault(b => b.VoiceBookName.ToLower() == book.ToLower());
             if (voice.TotalChapters >= chapter)
             {
                 UpdateChapterText = false;
@@ -169,10 +238,11 @@ namespace TheBible
             }
         }
 
-        private void DataLoader_Completed(object sender, EventArgs e)
+        private void InterfaceInitialization()
         {
             DataLoaded = true;
             UpdateChapterText = false;
+
             cmb_Translation.ItemsSource = CurrentTranslations;
             cmb_Book.ItemsSource = BooksInFirstTranslation;
             cmb_Chapter.ItemsSource = Genesis;
@@ -197,7 +267,11 @@ namespace TheBible
 
         private void chapterChanged()
         {
-            textBlock_Verses.Text = dataLoader.Translations[TranslationIndex].Books[BookIndex].Chapters[ChapterIndex].TextLineSeparated;
+            var translations = sqlLiteDB.GetAllTranslations().Where(b => b.TranslationIndex == TranslationIndex).First();
+            var books = sqlLiteDB.GetAllBooks(translations.TranslationShortName).Where(b => b.BookIndex == BookIndex).First();
+            string text = sqlLiteDB.GetChapter(books.BookID, ChapterIndex, true);
+
+            textBlock_Verses.Text = text;
         }
 
         private void decrementChapter()
@@ -281,6 +355,16 @@ namespace TheBible
                 sym_FullScreen.Symbol = Symbol.BackToWindow;
                 view.TryEnterFullScreenMode();
             }
+        }
+
+        private void btn_MenuToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            this.splitPanel_MainMenu.IsPaneOpen = true;
+        }
+
+        private void btn_MenuToggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.splitPanel_MainMenu.IsPaneOpen = false;
         }
     }
 }

@@ -12,25 +12,71 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btn_Back" Margin="0,0,20,0" Click="btn_Back_Click">
-                <SymbolIcon Symbol="Back"></SymbolIcon>
-            </Button>
-            <ComboBox x:Name="cmb_Translation" DisplayMemberPath="TranslationShortName" SelectionChanged="cmb_Translation_SelectionChanged" />
-            <ComboBox x:Name="cmb_Book" DisplayMemberPath="BookName" SelectionChanged="cmb_Book_SelectionChanged" />
-            <ComboBox x:Name="cmb_Chapter" DisplayMemberPath="Index" SelectionChanged="cmb_Chapter_SelectionChanged" />
-            <Button x:Name="btn_Forward" Margin="20,0,0,0" Click="btn_Forward_Click">
-                <SymbolIcon Symbol="Forward"></SymbolIcon>
-            </Button>
-            <Button x:Name="btn_FullScreen" Margin="20,0,0,0" Click="btn_FullScreen_Click">
-                <SymbolIcon x:Name="sym_FullScreen" Symbol="BackToWindow"></SymbolIcon>
-            </Button>
-        </StackPanel>
-        <ScrollViewer Grid.Row="1" Margin="20,20,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock x:Name="textBlock_Verses" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontFamily="Constantia" FontSize="24" />
-        </ScrollViewer>
+        <SplitView DisplayMode="CompactOverlay" x:Name="splitPanel_MainMenu" OpenPaneLength="170" CompactPaneLength="40" PaneBackground="{StaticResource SystemControlBackgroundAccentBrush}">
+            <SplitView.Pane>
+                <StackPanel>
+                    <ToggleButton x:Name="btn_MenuToggle" Foreground="{StaticResource SystemControlForegroundChromeHighBrush}" Checked="btn_MenuToggle_Checked" Unchecked="btn_MenuToggle_Unchecked">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="20" FontWeight="Bold" FontFamily="Segoe MDL2 Assets">&#xE700;</TextBlock>
+                            <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Foreground="{StaticResource SystemControlForegroundChromeHighBrush}">Menu</TextBlock>
+                        </StackPanel>
+                    </ToggleButton>
+                    <Button Foreground="{StaticResource SystemControlForegroundChromeHighBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="20" FontWeight="Bold" FontFamily="Segoe MDL2 Assets">&#xE82D;</TextBlock>
+                            <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Foreground="{StaticResource SystemControlForegroundChromeHighBrush}">Reading View</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Foreground="{StaticResource SystemControlForegroundChromeHighBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="20" FontWeight="Bold" FontFamily="Segoe MDL2 Assets">&#xE82D;</TextBlock>
+                            <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Foreground="{StaticResource SystemControlForegroundChromeHighBrush}">Comparison View</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="0" Margin="20,20,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Name="textBlock_Verses" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontFamily="Constantia" FontSize="24" />
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="1" Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btn_Back" Margin="0,0,20,0" Click="btn_Back_Click">
+                            <SymbolIcon Symbol="Back"></SymbolIcon>
+                        </Button>
+                        <ComboBox x:Name="cmb_Translation" DisplayMemberPath="TranslationShortName" SelectionChanged="cmb_Translation_SelectionChanged" />
+                        <ComboBox x:Name="cmb_Book" DisplayMemberPath="BookName" SelectionChanged="cmb_Book_SelectionChanged" />
+                        <ComboBox x:Name="cmb_Chapter" DisplayMemberPath="Index" SelectionChanged="cmb_Chapter_SelectionChanged" />
+                        <Button x:Name="btn_Forward" Margin="20,0,0,0" Click="btn_Forward_Click">
+                            <SymbolIcon Symbol="Forward"></SymbolIcon>
+                        </Button>
+                        <Button x:Name="btn_FullScreen" Margin="20,0,0,0" Click="btn_FullScreen_Click">
+                            <SymbolIcon x:Name="sym_FullScreen" Symbol="BackToWindow"></SymbolIcon>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+        <CommandBar VerticalAlignment="Bottom" IsOpen="True" VerticalContentAlignment="Center" Background="{StaticResource SystemControlBackgroundAccentBrush}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Account" Label="Test"></AppBarButton>
+                <AppBarButton Icon="Account" Label="Jesus"></AppBarButton>
+                <AppBarButton Icon="Account" Label="Loves You"></AppBarButton>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.Content>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <ComboBox VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </CommandBar.Content>
+        </CommandBar>
     </Grid>
 </Page>

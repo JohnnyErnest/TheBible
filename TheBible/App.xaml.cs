@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TheBible.Model.DataLoader;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.VoiceCommands;
@@ -34,6 +36,11 @@ namespace TheBible
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            //using (var db = new SQLDataLoader())
+            //{
+            //    db.Database.Migrate();
+            //}
         }
 
         /// <summary>
@@ -163,7 +170,7 @@ namespace TheBible
         {
             base.OnActivated(args);
 
-            Type navigationToPageType;
+            //Type navigationToPageType;
             //ViewModel.TripVoiceCommand? navigationCommand = null;
 
             // If the app was launched via a Voice Command, this corresponds to the "show trip to <location>" command. 

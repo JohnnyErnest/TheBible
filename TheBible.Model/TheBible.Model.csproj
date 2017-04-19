@@ -107,14 +107,25 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLoader\DataLoader.cs" />
+    <Compile Include="DataLoader\SQLitePrefs.cs" />
+    <Compile Include="DataLoader\SQLiteData.cs" />
+    <Compile Include="DataLoader\VoiceCommandDataLoader.cs" />
+    <Compile Include="Migrations\20170409024157_v1SQLiteMigration.cs" />
+    <Compile Include="Migrations\20170409024157_v1SQLiteMigration.designer.cs">
+      <DependentUpon>20170409024157_v1SQLiteMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20170409232829_v2SQLiteMigration.cs" />
+    <Compile Include="Migrations\20170409232829_v2SQLiteMigration.designer.cs">
+      <DependentUpon>20170409232829_v2SQLiteMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SQLDataLoaderModelSnapshot.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookVoiceName.cs" />
     <Compile Include="Model\Chapter.cs" />
-    <Compile Include="Model\DataContext\EntityDataContext.cs" />
     <Compile Include="Model\Testament.cs" />
     <Compile Include="Model\Translation.cs" />
     <Compile Include="Model\Verse.cs" />
+    <Compile Include="Model\Views\Views.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\TheBible.Model.rd.xml" />
   </ItemGroup>
